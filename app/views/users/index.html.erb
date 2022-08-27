@@ -1,0 +1,15 @@
+<%= form_tag users_path,remote: true, method: :get do %>
+  <div class="form-group row">
+    <div class="col-sm-9 no-right-padding">
+      <%= select_tag "filter", raw("<option>Voters</option><option>Candidate</option>")%>
+    </div>
+    <div class="col-sm-3 no-left-padding">
+      <%= button_tag type: :submit, class: "btn btn-success py-2" do %>
+        <%= 'Search' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div id="results">
+</div>

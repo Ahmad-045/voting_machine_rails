@@ -1,0 +1,12 @@
+<h3>Apply for Candidate Ship</h3>
+<%= form_with(model: @candidate, :url => user_candidate_path , local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :party_name %>
+    <%= f.text_field :party_name, autofocus: true, placeholder: 'Enter Your Party Name' ,autocomplete: 'name', class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Apply", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

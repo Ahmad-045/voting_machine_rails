@@ -18,10 +18,33 @@
 
   <div class="mt-4">
     <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
-    <%= link_to 'Admin Functionalities', '#', class: "btn btn-info"%>
-    <%= link_to "List of Voters", '#' , class: "btn btn-primary text-white"  %>
+    <%#= link_to 'Admin Functionalities', '#', class: "btn btn-info"%>
+    <%= link_to 'Apply for CandidateShip', new_user_candidate_path(current_user.id) , class: 'btn btn-info' if policy(Candidate).new?%>
+    <%= link_to "List of Users", users_path , class: "btn btn-primary text-white" if policy(User).index?  %>
   </div>
 
   <h4 class="mt-4">List of Approved Candidates of your Constituency: </h4>
-
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">CNIC</th>
+        <th scope="col">Halka</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @candidates.each_with_index do |candidate, index| %>
+        <tr>
+          <th scope="row"><%= index+1 %></th>
+          <td><%= candidate.name %></td>
+          <td><%= candidate.email %></td>
+          <td><%= candidate.cnic %></td>
+          <td><%= extract_halka_name(candidate.halka_id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

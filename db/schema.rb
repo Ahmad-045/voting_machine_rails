@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_27_120241) do
+ActiveRecord::Schema.define(version: 2022_08_27_192701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 2022_08_27_120241) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "candidates", force: :cascade do |t|
+    t.string "party_name", default: "", null: false
+    t.boolean "approved", default: false
+    t.bigint "user_id"
+    t.bigint "halka_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["halka_id"], name: "index_candidates_on_halka_id"
+    t.index ["user_id"], name: "index_candidates_on_user_id"
+  end
+
   create_table "halkas", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -52,7 +63,7 @@ ActiveRecord::Schema.define(version: 2022_08_27_120241) do
     t.string "cnic", default: "", null: false
     t.boolean "vote", default: false
     t.bigint "halka_id"
-    t.integer "role", default: 2
+    t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

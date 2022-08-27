@@ -62,6 +62,9 @@ gem 'jquery_mask_rails', '~> 0.1.0'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+# A gem to add authentication for specific users for specific resources
+gem 'pundit'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
