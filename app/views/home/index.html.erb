@@ -1,0 +1,27 @@
+<div class="mt-3">
+  <h1>Voting Machine App</h1>
+  <div class="row">
+    <% if current_user.avatar.attached? %>
+      <div class="col-4 user_image">
+        <%= image_tag current_user.avatar, :style => "width: 200px;"%>
+      </div>
+    <% else %>
+      <p>No profile Image</p>
+    <% end %>
+      <div class="col-8 user_details">
+        <p><strong>Name: </strong> <%= current_user.name %></p>
+        <p><strong>Email: </strong> <%= current_user.email %></p>
+        <p><strong>CNIC: </strong> <%= current_user.cnic %></p>
+        <p><strong>Halka: </strong> <%= extract_halka_name(current_user.halka_id) %></p>
+      </div>
+  </div>
+
+  <div class="mt-4">
+    <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+    <%= link_to 'Admin Functionalities', '#', class: "btn btn-info"%>
+    <%= link_to "List of Voters", '#' , class: "btn btn-primary text-white"  %>
+  </div>
+
+  <h4 class="mt-4">List of Approved Candidates of your Constituency: </h4>
+
+</div>

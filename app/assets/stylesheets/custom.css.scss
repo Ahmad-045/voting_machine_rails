@@ -1,0 +1,47 @@
+
+.user_details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user_image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.already_applied{
+  font-size: 12px;
+  text-align: right;
+}
+
+.candiate_approval,
+.candiate_approval_outer_div{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.check{
+  display: flex;
+  flex-direction: row;
+}
+
+.candidate_card{
+  border: 1px solid rgb(231, 227, 227);
+  border-radius: 10px;
+  padding: 1rem 0;
+}
+
+.clockdiv_style{
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.voting_ends{
+  display: flex;
+  flex-direction: row;
+}
