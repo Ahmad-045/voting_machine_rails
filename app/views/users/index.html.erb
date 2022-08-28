@@ -1,7 +1,7 @@
 <%= form_tag users_path,local: true, method: :get do %>
   <div class="form-group row">
     <div class="col-sm-9 no-right-padding">
-      <%= select_tag "filter", raw("<option></option><option>Voters</option><option>Candidate</option>")%>
+      <%= select_tag "filter", raw("<option>Candidate</option><option>Voters</option>")%>
     </div>
     <div class="col-sm-3 no-left-padding">
       <%= button_tag type: :submit, class: "btn btn-success py-2" do %>
@@ -11,8 +11,8 @@
   </div>
 <% end %>
 
-<% if @filter.nil? || @filter == 'Voters' %>
-  <%= render 'users/user_table' %>
-<% else %>
+<% if @filter.nil? || @filter == 'Candidate' %>
   <%= render 'users/candidate_table' %>
+<% else %>
+  <%= render 'users/user_table' %>
 <% end %>

@@ -9,14 +9,17 @@
     </tr>
   </thead>
   <tbody>
-    <% @users.each_with_index do |user, index| %>
+    <%
+      count = ((params[:page] || 1).to_i - 1) * 10
+      @users.each_with_index do |user, index| %>
       <tr>
-        <th scope="row"><%= index+1 %></th>
+        <th scope="row"><%= count+index+1 %></th>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.cnic %></td>
         <td><%= extract_halka_name(user.halka_id) %></td>
       </tr>
     <% end %>
+    <%= paginate @users %>
   </tbody>
 </table>
