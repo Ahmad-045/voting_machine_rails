@@ -3,7 +3,7 @@
   <div class="row">
     <% if current_user.avatar.attached? %>
       <div class="col-4 user_image">
-        <%= image_tag current_user.avatar, :style => "width: 200px;"%>
+        <%= cl_image_tag(current_user.avatar.key, width: 200, crop: :scale) %>
       </div>
     <% else %>
       <p>No profile Image</p>
@@ -18,9 +18,9 @@
 
   <div class="mt-4">
     <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
-    <%#= link_to 'Admin Functionalities', '#', class: "btn btn-info"%>
     <%= link_to 'Apply for CandidateShip', new_user_candidate_path(current_user.id) , class: 'btn btn-info' if policy(Candidate).new?%>
     <%= link_to "List of Users", users_path , class: "btn btn-primary text-white" if policy(User).index?  %>
+    <%= link_to "Create New Halka", new_halka_path , class: "btn btn-primary text-white" if policy(User).index?%>
   </div>
 
   <h4 class="mt-4">List of Approved Candidates of your Constituency: </h4>

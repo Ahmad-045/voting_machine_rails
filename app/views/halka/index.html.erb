@@ -1,0 +1,18 @@
+<h3>List of All Halkas</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Halka ID</th>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @halkas.each_with_index do |halka, index| %>
+      <tr>
+        <th><%= halka.id %></th>
+        <td><%= halka.name %></td>
+      </tr>
+    <% end %>
+    <%= paginate @halkas %>
+  </tbody>
+</table>

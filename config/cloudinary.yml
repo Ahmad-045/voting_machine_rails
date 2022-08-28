@@ -1,0 +1,11 @@
+development:
+  cloud_name: "doxavxubc"
+  api_key: "297746361732588"
+  api_secret: "ogIvgC0cjyV4cGm6qdKuQHgvJxo"
+  secure: true
+
+production:
+  cloud_name: "doxavxubc"
+  api_key: "297746361732588"
+  api_secret: "ogIvgC0cjyV4cGm6qdKuQHgvJxo"
+  secure: true

@@ -1,0 +1,12 @@
+<h3>Create New Halka</h3>
+<%= form_with(model: @halka, :url => halka_index_path , local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, placeholder: 'Enter New Halka Name' ,autocomplete: 'name', class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

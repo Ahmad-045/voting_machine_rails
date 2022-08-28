@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users do
     resource :candidate
   end
+  resources :halka
   root 'home#index'
   get '/users/:id/cast_vote', to: 'vote#add', as: 'add_vote'
 
