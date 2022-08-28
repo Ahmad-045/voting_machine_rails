@@ -32,7 +32,7 @@
         <th scope="col">Email</th>
         <th scope="col">CNIC</th>
         <th scope="col">Halka</th>
-        <th scope="col">Details</th>
+        <th scope="col">Party Name</th>
       </tr>
     </thead>
     <tbody>
@@ -43,6 +43,8 @@
           <td><%= candidate.email %></td>
           <td><%= candidate.cnic %></td>
           <td><%= extract_halka_name(candidate.halka_id) %></td>
+          <td><%= extract_party_name(candidate.id) %> </td>
+          <td><%= link_to "Show Details", candidate %></td>
         </tr>
       <% end %>
     </tbody>

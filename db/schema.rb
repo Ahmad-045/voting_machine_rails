@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_27_192701) do
+ActiveRecord::Schema.define(version: 2022_08_28_133204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2022_08_27_192701) do
     t.datetime "remember_created_at"
     t.string "name", default: "", null: false
     t.string "cnic", default: "", null: false
-    t.boolean "vote", default: false
+    t.boolean "given_vote", default: false
     t.bigint "halka_id"
     t.integer "role"
     t.datetime "created_at", null: false
@@ -69,6 +69,15 @@ ActiveRecord::Schema.define(version: 2022_08_27_192701) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["halka_id"], name: "index_users_on_halka_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.bigint "candidate_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_votes_on_candidate_id"
+    t.index ["user_id"], name: "index_votes_on_user_id", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

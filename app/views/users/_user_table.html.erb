@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">CNIC</th>
+      <th scope="col">Halka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each_with_index do |user, index| %>
+      <tr>
+        <th scope="row"><%= index+1 %></th>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.cnic %></td>
+        <td><%= extract_halka_name(user.halka_id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

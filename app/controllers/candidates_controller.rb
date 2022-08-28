@@ -26,6 +26,8 @@ class CandidatesController < ApplicationController
     candidate_status = Candidate.find_by(user_id: params[:user_id])
     candidate_status.toggle!(:approved)
 
+    toggle_user_role(params[:user_id])
+
     if candidate_status.save
       redirect_to users_path, notice: 'Successfully, Updated the Candidate Status'
     else
@@ -37,6 +39,15 @@ class CandidatesController < ApplicationController
 
   def set_params
     params.require(:candidate).permit(:party_name)
+  end
+
+  def toggle_user_role(user_id)
+    user = User.find_by(id: user_id)
+    if user.voter?
+      user.candidate!
+    elsif user.candidate?
+      user.voter!
+    end
   end
 
   def authorization_check

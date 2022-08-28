@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     resource :candidate
   end
   root 'home#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/users/:id/cast_vote', to: 'vote#add', as: 'add_vote'
+
 end

@@ -18,7 +18,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :name,               null: false, default: ''
       t.string :cnic,               null: false, default: ''
 
-      t.boolean :vote,              default: false
+      t.boolean :given_vote,              default: false
       ## Add a reference key from Halka table
       t.belongs_to :halka
 

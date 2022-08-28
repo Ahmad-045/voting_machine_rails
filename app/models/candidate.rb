@@ -4,5 +4,6 @@ class Candidate < ApplicationRecord
 
   scope :not_approved, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
+  scope :user_details, ->(user_ids) { User.where("id IN (?) ", user_ids) }
 
 end

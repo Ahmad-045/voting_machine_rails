@@ -6,10 +6,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :validatable
 
 
-  belongs_to :halka
   validates_presence_of :name, :avatar, :halka_id, :cnic
   validate  :correct_image_type
 
+  belongs_to :halka
+  has_one :vote, dependent: :destroy
 
   has_one_attached :avatar, dependent: :destroy
 
