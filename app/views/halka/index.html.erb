@@ -16,3 +16,5 @@
     <%= paginate @halkas %>
   </tbody>
 </table>
+
+<%= link_to "Create New Halka", new_halka_path , class: "btn btn-primary text-white" if policy(User).index? %>

@@ -7,7 +7,11 @@ class CandidatePolicy < ApplicationPolicy
   end
 
   def new?
-    @user.voter?
+    @user.voter? && check_in_candidate_table?
+  end
+
+  def check_in_candidate_table?
+    Candidate.find_by(user_id: @user.id) ? false : true
   end
 
   def create?

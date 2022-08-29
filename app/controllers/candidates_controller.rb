@@ -35,6 +35,13 @@ class CandidatesController < ApplicationController
     end
   end
 
+
+  def votes
+    @candidates = Candidate.all
+  end
+
+
+
   private
 
   def set_params

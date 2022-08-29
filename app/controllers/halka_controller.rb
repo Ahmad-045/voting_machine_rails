@@ -2,16 +2,14 @@ class HalkaController < ApplicationController
 
   def index
     @halkas = Halka.page(params[:page]).per(10)
-    authorize current_user
   end
 
   def new
     @halka = Halka.new
-    authorize current_user
   end
 
   def create
-    authorize current_user
+
     @halka = Halka.new(set_params)
 
     if @halka.save
