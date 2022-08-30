@@ -21,20 +21,23 @@ Halka.create([{ name: 'NA-56' },
   { name: 'NA-156' },
   { name: 'NA-187' }])
 
-100.times do |_i|
-  user = User.new(
-    name: Faker::Name.name,
-    password: 'asdasd',
-    email: Faker::Internet.email,
-    cnic: Faker::Base.numerify('#####-#######-#'),
-    halka_id: Faker::Number.between(from: 1, to: 13)
-  )
-  img_name = "img#{rand(1...5)}.jpg"
-  user.avatar.attach(
-    io: File.open(Rails.root.join("app/assets/images/#{img_name}")),
-    filename: img_name,
-    content_type: 'image/jpg'
-  )
-  user.save!
-end
+# 100.times do |_i|
+#   user = User.new(
+#     name: Faker::Name.name,
+#     password: 'asdasd',
+#     email: Faker::Internet.email,
+#     cnic: Faker::Base.numerify('#####-#######-#'),
+#     halka_id: Faker::Number.between(from: 1, to: 13)
+#   )
+#   img_name = "img#{rand(1...5)}.jpg"
+#   user.avatar.attach(
+#     io: File.open(Rails.root.join("app/assets/images/#{img_name}")),
+#     filename: img_name,
+#     content_type: 'image/jpg'
+#   )
+#   user.save!
+# end
 
+
+user = User.new(name: 'Ahmad Amin', password: 'asdasd', email: 'baigahmad323@gmail.com', cnic: '33100-4979893-7', halka_id: 1)
+user.save
