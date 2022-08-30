@@ -6,8 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :validatable
 
 
-  validates_presence_of :name, :halka_id, :cnic
-  # validate  :correct_image_type
+  validates_presence_of :name, :avatar, :halka_id, :cnic
+  validate  :correct_image_type
 
   belongs_to :halka
   has_one :vote, dependent: :destroy
