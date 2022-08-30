@@ -5,6 +5,11 @@
     <%= f.text_field :party_name, autofocus: true, placeholder: 'Enter Your Party Name' ,autocomplete: 'name', class: 'form-control' %>
   </div>
 
+  <div class="form-group">
+    <%= f.label 'Party Symbol' %>
+    <%= f.file_field :party_symbol, class: 'form-control', direct_upload: true %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Apply", class: "btn btn-primary" %>
   </div>

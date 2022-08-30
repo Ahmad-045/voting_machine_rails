@@ -7,13 +7,23 @@
   <% else %>
     <p>No profile Image</p>
   <% end %>
-    <div class="col-8 user_details">
-      <p><strong>Name: </strong> <%= @user.name %></p>
-      <p><strong>Email: </strong> <%= @user.email %></p>
-      <p><strong>CNIC: </strong> <%= @user.cnic %></p>
-      <p><strong>Halka: </strong> <%= extract_halka_name(@user.halka_id) %></p>
-      <p><strong>Party Name: </strong> <%= extract_party_name(@user.id) %></p>
-    </div>
-
-    <%= link_to 'Cast Vote', add_vote_path , class: 'btn btn-primary' ,data: {confirm: 'Are you sure, This action is irreversiable'}%>
+  <div class="col-8 user_details">
+    <p><strong>Name: </strong> <%= @user.name %></p>
+    <p><strong>Email: </strong> <%= @user.email %></p>
+    <p><strong>CNIC: </strong> <%= @user.cnic %></p>
+    <p><strong>Halka: </strong> <%= extract_halka_name(@user.halka_id) %></p>
+    <p><strong>Party Name: </strong> <%= @candidate.party_name %></p>
+  </div>
 </div>
+
+<h3 class="mt-4">Party Symbol</h3>
+  <br>
+  <% if @candidate.party_symbol.attached? %>
+    <div class="col-4 user_image">
+      <%= cl_image_tag(@candidate.party_symbol.key, width: 200, crop: :scale) %>
+    </div>
+  <% else %>
+    <p>No Party Symbol Image</p>
+  <% end %>
+
+  <%= link_to 'Cast Vote', add_vote_path , class: 'btn btn-primary mt-5' ,data: {confirm: 'Are you sure, This action is irreversiable'}%>

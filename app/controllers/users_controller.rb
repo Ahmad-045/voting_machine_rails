@@ -12,8 +12,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    candidate = Candidate.find_by(user_id: params[:id])
-    @user = Candidate.user_details(candidate.user_id)[0]
+    @candidate = Candidate.find_by(user_id: params[:id])
+    @user = Candidate.user_details(@candidate.user_id)[0]
   end
 
   def halka_voters

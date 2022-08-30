@@ -6,4 +6,6 @@ class Candidate < ApplicationRecord
   scope :approved, -> { where(approved: true) }
   scope :user_details, ->(user_ids) { User.where("id IN (?) ", user_ids) }
 
+  has_one_attached :party_symbol
+
 end

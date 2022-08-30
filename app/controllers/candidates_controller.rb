@@ -42,7 +42,7 @@ class CandidatesController < ApplicationController
   private
 
   def set_params
-    params.require(:candidate).permit(:party_name)
+    params.require(:candidate).permit(:party_name, :party_symbol)
   end
 
   def toggle_user_role(user_id)
