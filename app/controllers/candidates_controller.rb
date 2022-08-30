@@ -25,7 +25,6 @@ class CandidatesController < ApplicationController
 
     candidate_status = Candidate.find_by(user_id: params[:user_id])
     candidate_status.toggle!(:approved)
-    byebug
 
     toggle_user_role(params[:user_id])
 
