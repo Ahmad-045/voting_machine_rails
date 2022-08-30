@@ -33,10 +33,13 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# for using the active Storage to upload images to the cloudinary
 gem 'cloudinary'
 
+# for create the fake records to test the model
 gem 'faker'
 
+# for pagination of the records
 gem 'kaminari'
 
 # pry console used to debug the rails application
@@ -66,13 +69,14 @@ gem 'jquery_mask_rails', '~> 0.1.0'
 # A gem to add authentication for specific users for specific resources
 gem 'pundit'
 
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
-gem 'bootstrap-datepicker-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

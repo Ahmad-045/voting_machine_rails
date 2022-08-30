@@ -30,9 +30,39 @@
       <%= link_to "List of Users", users_path , class: "btn btn-primary text-white" %>
       <%= link_to "Show All Halkas", halka_index_path , class: "btn btn-primary text-white" %>
       <%= link_to "Votes", votes_path , class: "btn btn-info text-white" %>
+      <%= link_to "Create Election Event", new_election_path, class: "btn btn-secondary"%>
     <% end %>
 
   </div>
+    <div class="mt-4 voting_ends">
+      <p class="mr-3"><strong>Voting Ends in:</strong></p>
+      <div id="auctionEndTime">
+        <%= @election_end_time %>
+      </div>
+    </div>
+
+    <div class="clockdiv_style" id="clockdiv">
+      <div>
+        <div class="smalltext"><%= t(".days") %></div>
+        <span class="days"></span>
+      </div>
+      <div>
+        <div class="smalltext"><%= t(".hours") %></div>
+        <span class="hours"></span>
+      </div>
+      <div>
+        <div class="smalltext"><%= t(".minutes") %></div>
+        <span class="minutes"></span>
+      </div>
+      <div>
+        <div class="smalltext"><%= t(".seconds") %></div>
+        <span class="seconds"></span>
+      </div>
+  </div>
+
+  <%= javascript_tag "initializeClock('clockdiv')" %>
+
+
 
   <h4 class="mt-4">List of Approved Candidates of your Constituency: </h4>
     <table class="table">
@@ -44,6 +74,7 @@
         <th scope="col">CNIC</th>
         <th scope="col">Halka</th>
         <th scope="col">Party Name</th>
+        <th scope="col">Show Details</th>
       </tr>
     </thead>
     <tbody>

@@ -1,0 +1,23 @@
+<h3>Create New Election</h3>
+<%= form_with(model: @election, :url => election_index_path , local: true) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :start_time %>
+    <div style= "position: relative">
+      <%= f.text_field :start_time, id: 'datetimepicker4', placeholder: 'Start Time of Election' ,autocomplete: 'start_time', class: 'form-control' %>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label :end_time %>
+    <div style="position:relative">
+      <%= f.text_field :end_time, id: 'datetimepicker5', placeholder: 'End Time of Election' ,autocomplete: 'end_time', class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create", class: "btn btn-primary" %>
+  </div>
+
+<% end %>
