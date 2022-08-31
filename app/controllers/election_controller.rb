@@ -8,7 +8,7 @@ class ElectionController < ApplicationController
     if @election.save
       redirect_to root_path, notice: "Successfully, created an Election Event"
     else
-      redirect_to new_election_path, notice: 'Error, while creating the Election Event'
+      redirect_to new_election_path, alert: 'Error, while creating the Election Event'
     end
   end
 

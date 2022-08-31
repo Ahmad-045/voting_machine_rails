@@ -22,4 +22,12 @@ module ApplicationHelper
     votes = candidate.votes.count
   end
 
+  def election_opened?
+    if Election.last.end_time >= Time.zone.now.localtime.strftime("%a, %d %b %Y %H:%M:%S")
+      true
+    else
+      false
+    end
+  end
+
 end

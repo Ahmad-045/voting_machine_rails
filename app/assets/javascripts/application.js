@@ -22,8 +22,9 @@
 jQuery(function($){
   // require turbolinks
   $("#cnic").mask("99999-9999999-9");
-  $('#datetimepicker4').datetimepicker();
-  $('#datetimepicker5').datetimepicker();
+  $('#datetimepicker5').datetimepicker({
+    format: 'YYYY-MM-DD HH:mm:ss',
+  });
 })
 
 function getTimeRemaining(endtime) {
@@ -63,7 +64,7 @@ function getTimeRemaining(endtime) {
 
       if (t.total <= 0) {
         clearInterval(timeinterval);
-        window.location.replace("http://localhost:3000/show_results");
+        alert("Voting Time is Over")
       }
     }
 

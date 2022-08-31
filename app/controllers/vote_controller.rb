@@ -23,20 +23,15 @@ class VoteController < ApplicationController
 
   def update_user_status(id)
     user = User.find(id)
-    user.given_vote = true
-    user.save
+    user.update_attribute(:given_vote, true)
   end
 
   def election_opened?
-    true
-    # zone = 'Islamabad'
-    # puts ActiveSupport::TimeZone[zone].parse(Election.last.end_time)
-    # byebug
-    # if Time.zone.now >= Election.last.end_time
-    #   true
-    # else
-    #   false
-    # end
+    if Election.last.end_time.to_datetime >= Time.zone.now.localtime.strftime("%a, %d %b %Y %H:%M:%S")
+      true
+    else
+      false
+    end
   end
 
 end
