@@ -18,16 +18,11 @@ module ApplicationHelper
   end
 
   def total_votes user_id
-    candidate = Candidate.find_by(user_id: user_id)
-    votes = candidate.votes.count
+    Candidate.find_by(user_id: user_id)&.votes.length
   end
 
   def election_opened?
-    if Election.last.end_time >= Time.zone.now.localtime.strftime("%a, %d %b %Y %H:%M:%S")
-      true
-    else
-      false
-    end
+    Election.last.end_time >= Time.zone.now.localtime.strftime("%a, %d %b %Y %H:%M:%S")
   end
 
 end

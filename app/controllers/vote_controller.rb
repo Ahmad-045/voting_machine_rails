@@ -2,11 +2,11 @@ class VoteController < ApplicationController
 
   def add
 
-    if election_opened?
+    if election_opened? && candidate_aprroved?
       candidate = Candidate.find_by(user_id: params[:id])
       vote = Vote.new(user_id: current_user.id, candidate_id: candidate.id)
 
-      if User.find(current_user.id).given_vote == false
+      unless User.find(current_user.id).given_vote
         update_user_status(current_user.id)
         vote.save
         redirect_to root_path, notice: 'Successfully casted your vote'
@@ -14,7 +14,7 @@ class VoteController < ApplicationController
         redirect_to root_path, alert: 'CANNOT VOTE NOW, because you have already Casted a Vote'
       end
     else
-      redirect_to root_path, alert: "Voting Time is over, CANNOT VOTE NOW"
+      redirect_to root_path, alert: "CANNOT VOTE RIGHT NOW"
     end
 
   end
@@ -27,11 +27,11 @@ class VoteController < ApplicationController
   end
 
   def election_opened?
-    if Election.last.end_time.to_datetime >= Time.zone.now.localtime.strftime("%a, %d %b %Y %H:%M:%S")
-      true
-    else
-      false
-    end
+    Election.last.end_time.to_datetime >= Time.zone.now.localtime.strftime("%a, %d %b %Y %H:%M:%S")
+  end
+
+  def candidate_aprroved?
+    Candidate.find_by(user_id: params[:id]).approved
   end
 
 end

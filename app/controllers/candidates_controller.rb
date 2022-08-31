@@ -26,9 +26,7 @@ class CandidatesController < ApplicationController
     candidate_status = Candidate.find_by(user_id: params[:user_id])
     candidate_status.toggle!(:approved)
 
-    toggle_user_role(params[:user_id])
-
-    if candidate_status.save
+    if toggle_user_role(params[:user_id])
       redirect_to users_path, notice: 'Successfully, Updated the Candidate Status'
     else
       flash[:alert] = 'Error while updating the Candidate Status'

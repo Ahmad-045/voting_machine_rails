@@ -9,6 +9,7 @@
       <th scope="col">Halka</th>
       <th scope="col">Party Name</th>
       <th scope="col">CandidateShip</th>
+      <th scope="col">Details</th>
     </tr>
   </thead>
   <tbody>
@@ -21,6 +22,7 @@
         <td><%= extract_halka_name(user.halka_id) %></td>
         <td><%= extract_party_name(user.id) %></td>
         <td><%= link_to status_format(user.id), user_candidate_path(user.id), method: 'patch', class: 'btn btn-primary', data: {confirm: 'Are you sure to change Status of this Candidate'} %> </td>
+        <td><%= link_to 'Details', user_path(user.id) , class: 'btn btn-info' %></td>
       </tr>
     <% end %>
   </tbody>
