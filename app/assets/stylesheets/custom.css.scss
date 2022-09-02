@@ -36,6 +36,9 @@
 }
 
 .clockdiv_style{
+  // position: absolute;
+  // top: 5rem;
+  // right: 10rem;
   display: flex;
   flex-direction: row;
   gap: 1.5rem;
@@ -44,4 +47,43 @@
 .voting_ends{
   display: flex;
   flex-direction: row;
+}
+
+.voting-div{
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin: auto;
+}
+
+.auction-endtime-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-nav-link{
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.custom-navbar{
+  padding: 1rem 0;
+}
+
+.custom-timer-design{
+  display: inline-block;
+  background: rgb(243, 120, 120);
+  color: white;
+  width: 4rem;
+  height: 3rem;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3px;
+  border-radius: 3px;
 }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
 
@@ -12,8 +14,8 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
-    redirect_to(request.referrer || root_path)
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_to(request.referer || root_path)
   end
 
   def route_not_found
@@ -23,7 +25,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :halka_id, :email, :password, :cnic, :avatar, :password_confirmation ) }
+    devise_parameter_sanitizer.permit(:sign_up) do |u|
+      u.permit(:name, :email, :password, :halka_id, :cnic, :avatar, :password_confirmation)
+    end
   end
-
 end

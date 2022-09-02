@@ -71,6 +71,10 @@ ActiveRecord::Schema.define(version: 2022_08_29_095819) do
     t.boolean "given_vote", default: false
     t.bigint "halka_id"
     t.integer "role"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

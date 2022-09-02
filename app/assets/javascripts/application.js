@@ -31,6 +31,15 @@ function getTimeRemaining(endtime) {
   const endtimeDate = endtime
 
   const total = Date.parse(endtimeDate) - Date.parse(new Date());
+  if (total <= 0){
+    return {
+      total: 0,
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    };
+  }
   const seconds = Math.floor((total / 1000) % 60);
   const minutes = Math.floor((total / 1000 / 60) % 60);
   const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
@@ -65,6 +74,7 @@ function getTimeRemaining(endtime) {
       if (t.total <= 0) {
         clearInterval(timeinterval);
         alert("Voting Time is Over")
+        document.getElementById('votes_final').classList.remove('d-none')
       }
     }
 

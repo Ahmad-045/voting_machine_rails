@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   before_create :set_default_role
   # Include default devise modules. Others available are:
@@ -5,8 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :validatable
 
-
-  validates_presence_of :name, :avatar, :halka_id, :cnic
+  validates :name, :avatar, :halka_id, :cnic, presence: true
   validate  :correct_image_type
 
   belongs_to :halka
@@ -16,7 +17,6 @@ class User < ApplicationRecord
 
   enum role: { admin: 0, candidate: 1, voter: 2 }
 
-
   private
 
   def set_default_role
@@ -24,11 +24,10 @@ class User < ApplicationRecord
   end
 
   def correct_image_type
-    if avatar.attached? && !avatar.content_type.in?(%w(image/jpeg image/jpg image/png))
+    if avatar.attached? && !avatar.content_type.in?(%w[image/jpeg image/jpg image/png])
       errors.add(:avatar, 'must be an image of type JPEG, JPG or PNG. ')
     elsif avatar.attached? == false
       errors.add(:avatar, 'required')
     end
   end
-
 end

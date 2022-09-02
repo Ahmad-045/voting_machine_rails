@@ -33,33 +33,35 @@
       <%= link_to "Start Election", new_election_path, class: "btn btn-secondary"%>
     <% end %>
 
+    <%= link_to "Votes", votes_path , class: "btn btn-info text-white d-none", id: 'votes_final' %>
+
 
   </div>
     <div class="mt-4 voting_ends">
-      <p class="mr-3"><strong>Voting Ends in:</strong></p>
-      <div id="auctionEndTime">
+      <p class="mr-3 voting-div"><strong>Voting Ends in:</strong></p>
+      <div id="auctionEndTime" class="auction-endtime-div">
         <%= @election_end_time %>
       </div>
     </div>
 
     <div class="clockdiv_style" id="clockdiv">
-      <div>
-        <div class="smalltext"><%= t(".days") %></div>
-        <span class="days"></span>
-      </div>
-      <div>
-        <div class="smalltext"><%= t(".hours") %></div>
-        <span class="hours"></span>
-      </div>
-      <div>
-        <div class="smalltext"><%= t(".minutes") %></div>
-        <span class="minutes"></span>
-      </div>
-      <div>
-        <div class="smalltext"><%= t(".seconds") %></div>
-        <span class="seconds"></span>
-      </div>
-  </div>
+        <div class="custom-days">
+          <div class="smalltext"><%= t(".days") %></div>
+          <span class="days custom-timer-design"></span>
+        </div>
+        <div class="custom-hours">
+          <div class="smalltext"><%= t(".hours") %></div>
+          <span class="hours custom-timer-design"></span>
+        </div>
+        <div class="custom-minutes">
+          <div class="smalltext"><%= t(".minutes") %></div>
+          <span class="minutes custom-timer-design"></span>
+        </div>
+        <div class="custom-seconds">
+          <div class="smalltext"><%= t(".seconds") %></div>
+          <span class="seconds custom-timer-design"></span>
+        </div>
+    </div>
 
   <%= javascript_tag "initializeClock('clockdiv')" %>
 

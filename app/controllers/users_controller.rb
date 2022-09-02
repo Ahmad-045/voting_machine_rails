@@ -1,22 +1,38 @@
-class UsersController < ApplicationController
+# frozen_string_literal: true
 
+class UsersController < ApplicationController
   def index
     @users = User.all
-    if params[:filter] && params[:filter] == 'Voters'
-      @users = User.page(params[:page]).per(10)
-    elsif !params[:filter] || params[:filter] == 'Candidate'
-      @users = Candidate.user_details(Candidate.pluck(:user_id))
-    end
+    @users = case params[:filter]
+             when 'Voters'
+               User.page(params[:page]).per(10)
+             when 'Candidate'
+               Candidate.user_details(Candidate.pluck(:user_id))
+             else
+               Candidate.user_details(Candidate.pluck(:user_id))
+             end
+
     @filter = params[:filter]
     authorize @users
   end
 
   def show
-    @candidate = Candidate.find_by(user_id: params[:id])
-    @user = Candidate.user_details(@candidate.user_id)[0]
+    if does_user_exist?
+      @candidate = Candidate.find_by(user_id: params[:id])
+      @user = Candidate.user_details(@candidate.user_id)[0]
+    else
+      redirect_to users_path, alert: 'Resource Not Found'
+    end
+  end
 
-    authorize @user
-
+  def destroy
+    if User.exists?(params[:id])
+      User.destroy(params[:id])
+      flash[:notice] = 'Successfully delete the User from the Database'
+      redirect_to(request.referer || root_path)
+    else
+      redirect_to halka_path, alert: 'Error Deleting the User from the Database'
+    end
   end
 
   def halka_voters
@@ -27,4 +43,9 @@ class UsersController < ApplicationController
     @votes = Candidate.find(params[:id]).votes
   end
 
+  private
+
+  def does_user_exist?
+    Candidate.find_by(user_id: params[:id])
+  end
 end

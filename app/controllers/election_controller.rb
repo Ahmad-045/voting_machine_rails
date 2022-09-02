@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 class ElectionController < ApplicationController
   def new
     @election = Election.new
   end
 
   def create
-    @election = Election.new(set_params)
+    @election = Election.new(election_params)
     if @election.save
-      redirect_to root_path, notice: "Successfully, created an Election Event"
+      redirect_to root_path, notice: 'Successfully, created an Election Event'
     else
       redirect_to new_election_path, alert: 'Error, while creating the Election Event'
     end
@@ -14,8 +16,7 @@ class ElectionController < ApplicationController
 
   private
 
-  def set_params
+  def election_params
     params.require(:election).permit(:start_time, :end_time)
   end
-
 end

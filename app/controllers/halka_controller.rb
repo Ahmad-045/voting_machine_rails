@@ -1,5 +1,6 @@
-class HalkaController < ApplicationController
+# frozen_string_literal: true
 
+class HalkaController < ApplicationController
   def index
     @halkas = Halka.page(params[:page]).per(10)
   end
@@ -9,17 +10,27 @@ class HalkaController < ApplicationController
   end
 
   def create
-    @halka = Halka.new(set_params)
+    @halka = Halka.new(halka_params)
     if @halka.save
-      redirect_to halka_index_path, notice: "Succesfully added new Halka"
+      redirect_to halka_index_path, notice: 'Succesfully added new Halka'
     else
-      redirect_to new_halka_path, alert: "Error Creating new Halka"
+      redirect_to new_halka_path, alert: 'Error Creating new Halka'
+    end
+  end
+
+  def destroy
+    if Halka.exists?(params[:id])
+      Halka.destroy(params[:id])
+      flash[:notice] = 'Successfully delete the Halka from the Database'
+      redirect_to(request.referer || root_path)
+    else
+      redirect_to halka_path, alert: 'Error Deleting the Halka from the Database'
     end
   end
 
   private
 
-  def set_params
+  def halka_params
     params.require(:halka).permit(:name)
   end
 end

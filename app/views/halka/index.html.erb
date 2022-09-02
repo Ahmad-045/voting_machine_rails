@@ -4,6 +4,7 @@
     <tr>
       <th scope="col">Halka ID</th>
       <th scope="col">Name</th>
+      <th scope="col">Delete Halka</th>
     </tr>
   </thead>
   <tbody>
@@ -11,6 +12,7 @@
       <tr>
         <th><%= halka.id %></th>
         <td><%= halka.name %></td>
+        <td><%= link_to 'Delete', halka_path(halka.id), method: :delete, class: 'btn btn-danger', data: { confirm: 'Deleting the Halka will also delete all of the voters data in that particular halka. Are You Sure..?'} %></td>
       </tr>
     <% end %>
     <%= paginate @halkas %>
