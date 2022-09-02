@@ -3,11 +3,11 @@
 class VoteController < ApplicationController
   def add
     if election_opened? && candidate_aprroved?
-      candidate = Candidate.find_by(user_id: params[:id])
 
-      if User.find(current_user.id).given_vote
+      if current_user.given_vote
         redirect_to root_path, alert: 'CANNOT VOTE NOW, because you have already Casted a Vote'
       else
+        candidate = Candidate.find_by(user_id: params[:id])
         vote = Vote.new(user_id: current_user.id, candidate_id: candidate.id)
         update_user_status(current_user.id)
         vote.save

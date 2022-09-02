@@ -42,17 +42,17 @@ class CandidatesController < ApplicationController
     params.require(:candidate).permit(:party_name, :party_symbol)
   end
 
-  def toggle_user_role(user_id, candiate_status)
+  def toggle_user_role(user_id, candidate_status)
     user = User.find_by(id: user_id)
     if user.voter?
-      candiate_status.approved = true
-      candiate_status.save
+      candidate_status.approved = true
+      candidate_status.save
       user.candidate!
 
     elsif user.candidate?
       user.voter!
-      candiate_status.approved = false
-      candiate_status.save
+      candidate_status.approved = false
+      candidate_status.save
     end
   end
 
