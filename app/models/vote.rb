@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Vote < ApplicationRecord
-  validates_presence_of :user_id, :candidate_id
+  validates :user_id, :candidate_id, presence: true
 
   belongs_to :candidate
   belongs_to :user

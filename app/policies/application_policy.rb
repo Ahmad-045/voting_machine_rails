@@ -7,6 +7,7 @@ class ApplicationPolicy
     @user = user
     @record = record
   end
+
   class Scope
     def initialize(user, scope)
       @user = user

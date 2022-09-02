@@ -29,7 +29,7 @@ Halka.create([{ name: 'NA-56' }, { name: 'NA-57' }, { name: 'NA-60' }, { name: '
 #   user.save!
 # end
 
-user = User.new(name: 'Ahmad Amin', password: 'asdasd', email: 'baigahmad323@gmail.com',
+user = User.new(name: ENV['ADMIN_EMAIL'], password: ENV['ADMIN_PASSWORD'], email: 'baigahmad323@gmail.com',
                 cnic: '33100-4979893-7', halka_id: 1, role: 0)
 user.avatar.attach(
   io: File.open(Rails.root.join('app/assets/images/ahmad.jpg')),

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Election < ApplicationRecord
-  validates_presence_of :end_time
+  validates :end_time, presence: true
 end

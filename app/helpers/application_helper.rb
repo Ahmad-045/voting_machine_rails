@@ -1,5 +1,6 @@
-module ApplicationHelper
+# frozen_string_literal: true
 
+module ApplicationHelper
   def extract_halka_name(halka_id)
     Halka.find(halka_id).name
   end
@@ -18,10 +19,11 @@ module ApplicationHelper
   end
 
   def total_votes(user_id)
-    Candidate.find_by(user_id: user_id)&.votes.length
+    candidate_votes = Candidate.find_by(user_id: user_id)&.votes
+    candidate_votes.length
   end
 
   def election_opened?
-    Election.last.end_time >= Time.zone.now.localtime.strftime("%a, %d %b %Y %H:%M:%S")
+    Election.last.end_time >= Time.zone.now.localtime.strftime('%a, %d %b %Y %H:%M:%S')
   end
 end
