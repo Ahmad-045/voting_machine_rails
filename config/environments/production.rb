@@ -90,7 +90,7 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'voting-machine-0045.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   # config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
 
