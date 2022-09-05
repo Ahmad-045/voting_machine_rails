@@ -3,14 +3,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-    @users = case params[:filter]
-             when 'Voters'
-               User.page(params[:page]).per(10)
-             when 'Candidate'
-               Candidate.user_details(Candidate.pluck(:user_id))
-             else
-               Candidate.user_details(Candidate.pluck(:user_id))
-             end
+    @users = filter_resources(params[:filter])
 
     @filter = params[:filter]
     authorize @users
@@ -47,5 +40,14 @@ class UsersController < ApplicationController
 
   def does_user_exist?
     Candidate.find_by(user_id: params[:id])
+  end
+
+  def filter_resources(filter)
+    case filter
+    when 'Voters'
+      User.page(params[:page]).per(10)
+    else
+      Candidate.user_details(Candidate.pluck(:user_id))
+    end
   end
 end

@@ -18,7 +18,7 @@
 
   <div class="mt-4">
     <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
-    <%= link_to 'Apply for CandidateShip', new_user_candidate_path(current_user.id) , class: 'btn btn-info' if policy(Candidate).new?%>
+    <%= link_to 'Apply for CandidateShip', new_user_candidate_path(current_user.id) , class: 'btn btn-info' if policy(Candidate).new? %>
 
     <% if current_user.candidate? %>
       <p class="mt-2">Total Votes Casted in your favor: <strong><%= total_votes(current_user.id) %></strong><p>
@@ -66,8 +66,7 @@
   <%= javascript_tag "initializeClock('clockdiv')" %>
 
 
-
-  <h4 class="mt-4">List of Approved Candidates of your Constituency: </h4>
+  <h4 class="mt-4">List of Approved Candidates of your Halka: </h4>
     <table class="table">
     <thead>
       <tr>

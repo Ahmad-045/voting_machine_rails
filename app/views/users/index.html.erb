@@ -1,11 +1,11 @@
-<%= form_tag users_path,local: true, method: :get do %>
+<%= form_tag users_path, local: true, method: :get do %>
   <div class="form-group row">
-    <div class="col-sm-9 no-right-padding">
-      <%= select_tag "filter", raw("<option>Candidate</option><option>Voters</option>")%>
+    <div class="select_tag">
+      <%= select_tag "filter", options_for_select(%w[Candidate Voters], params[:filter])%>
     </div>
-    <div class="col-sm-3 no-left-padding">
-      <%= button_tag type: :submit, class: "btn btn-success py-2" do %>
-        <%= 'Search' %>
+    <div class="ml-5" onclick="changeSelectedValue('<%= @filter %>')">
+      <%= button_tag type: :submit , class: "btn btn-success py-2" do %>
+        <%= 'Filter' %>
       <% end %>
     </div>
   </div>

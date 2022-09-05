@@ -27,6 +27,11 @@ jQuery(function($){
   });
 })
 
+
+function changeSelectedValue(filter){
+  console.log(filter)
+}
+
 function getTimeRemaining(endtime) {
   const endtimeDate = endtime
 

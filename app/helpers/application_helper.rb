@@ -14,6 +14,14 @@ module ApplicationHelper
     end
   end
 
+  # def select_options_using_filter(filter)
+  #   if filter.nil? || filter == 'Candidate'
+  #     options_for_select(%w[Candidate Voters], 'Candidate')
+  #   else
+  #     options_for_select(%w[Candidate Voters], 'Voter')
+  #   end
+  # end
+
   def extract_party_name(user_id)
     Candidate.find_by(user_id: user_id).party_name
   end
