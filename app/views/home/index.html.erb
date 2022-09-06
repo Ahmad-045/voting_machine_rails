@@ -29,11 +29,11 @@
     <% if policy(User).index? %>
       <%= link_to "List of Users", users_path , class: "btn btn-primary text-white" %>
       <%= link_to "Show All Halkas", halka_index_path , class: "btn btn-primary text-white" %>
-      <%= link_to "Votes", votes_path , class: "btn btn-info text-white" %>
+      <%= link_to "Votes", vote_index_path , class: "btn btn-info text-white" %>
       <%= link_to "Start Election", new_election_path, class: "btn btn-secondary"%>
     <% end %>
 
-    <%= link_to "Votes", votes_path , class: "btn btn-info text-white d-none", id: 'votes_final' %>
+    <%= link_to "Votes", vote_index_path , class: "btn btn-info text-white d-none", id: 'votes_final' %>
 
 
   </div>

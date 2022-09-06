@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class VoteController < ApplicationController
+  def index
+    @vote = Vote.all
+    @candidate_information = Candidate.includes(:votes)
+  end
+
   def add
     if election_opened? && candidate_aprroved?
       candidate = Candidate.find_by(user_id: params[:id])

@@ -1,0 +1,15 @@
+<p>Total Votes: <strong> <%= @vote.count %></strong></p>
+
+<h3>List of Candidates</h3>
+<div class="row">
+  <% @candidate_information.each do |candidate|%>
+
+    <div class="candidate_card col-4">
+      <p><strong>Party Name: </strong><%= candidate.party_name%> </p>
+      <p><strong>Halka: </strong><%= extract_halka_name(candidate.halka_id)%></p>
+      <p><strong>Total Votes: </strong><%= candidate.votes.count %></p>
+      <%= link_to "Show Voters Details", show_voters_user_path(candidate.id) , class: 'btn btn-primary'%>
+    </div>
+
+  <% end %>
+</div>
