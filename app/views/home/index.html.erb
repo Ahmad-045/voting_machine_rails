@@ -24,7 +24,7 @@
       <p class="mt-2">Total Votes Casted in your favor: <strong><%= total_votes(current_user.id) %></strong><p>
     <% end %>
 
-    <%= link_to 'Voters in my Halka', halka_voters_path , class: 'btn btn-primary' if current_user.candidate? %>
+    <%= link_to 'Voters in my Halka', halka_voters_users_path , class: 'btn btn-primary' if current_user.candidate? %>
 
     <% if policy(User).index? %>
       <%= link_to "List of Users", users_path , class: "btn btn-primary text-white" %>

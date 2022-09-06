@@ -6,7 +6,7 @@
       <p><strong>Party Name: </strong><%= candidate.party_name%> </p>
       <p><strong>Halka: </strong><%= extract_halka_name(candidate.halka_id)%></p>
       <p><strong>Total Votes: </strong><%= candidate.votes.count %></p>
-      <%= link_to "Show Voters Details", show_voters_path(candidate.id) , class: 'btn btn-primary'%>
+      <%= link_to "Show Voters Details", show_voters_user_path(candidate.id) , class: 'btn btn-primary'%>
     </div>
 
   <% end %>
