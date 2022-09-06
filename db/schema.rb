@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2022_08_29_095819) do
     t.string "cnic", default: "", null: false
     t.boolean "given_vote", default: false
     t.bigint "halka_id"
-    t.integer "role", default: 0
+    t.integer "role", default: 2
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

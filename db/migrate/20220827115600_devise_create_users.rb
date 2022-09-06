@@ -23,7 +23,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.belongs_to :halka
 
       ## Add user Role to the table
-      t.integer :role
+      t.integer :role, default: 2 # {admin:0, candidate:1, voter: 2}
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false

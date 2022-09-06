@@ -13,7 +13,8 @@ class VoteController < ApplicationController
       vote.save
       redirect_to root_path, notice: 'Successfully casted your vote'
     else
-      redirect_to root_path, alert: 'CANNOT VOTE, Either you have already casted your vote or Election is not Started Yet'
+      redirect_to root_path,
+                  alert: 'CANNOT VOTE, Either you have already casted your vote or Election is not Started Yet'
     end
   end
 
