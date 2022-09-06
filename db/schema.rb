@@ -48,14 +48,14 @@ ActiveRecord::Schema.define(version: 2022_08_29_095819) do
   end
 
   create_table "elections", force: :cascade do |t|
-    t.string "start_time"
-    t.string "end_time"
+    t.string "start_time", default: "", null: false
+    t.string "end_time", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "halkas", force: :cascade do |t|
-    t.string "name"
+    t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2022_08_29_095819) do
     t.string "cnic", default: "", null: false
     t.boolean "given_vote", default: false
     t.bigint "halka_id"
-    t.integer "role"
+    t.integer "role", default: 0
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
