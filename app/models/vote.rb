@@ -15,9 +15,9 @@ class Vote < ApplicationRecord
     if User.exists?(user_id)
       user = User.find(user_id)
       user.given_vote = true
-      redirect_to root_path, alert: 'Error, Updating the User status' unless user.save
+      flash[:alert] = 'Error, Updating the User status' unless user.save
     else
-      redirect_to root_path, alert: 'Resource Not Found'
+      flash[:alert] = 'Resource Not Found'
     end
   end
 end

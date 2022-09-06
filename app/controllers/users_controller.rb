@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def show_voters
-    @votes = Candidate.find(params[:id]).votes
+    @votes = Candidate.find_by(id: params[:id])&.votes
   end
 
   private

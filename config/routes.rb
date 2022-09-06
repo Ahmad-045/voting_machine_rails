@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get 'show_voters', on: :member
   end
 
-  resources :halka
+  resources :halka, only: %i[index new create destroy]
   resources :election
   resources :vote
 
