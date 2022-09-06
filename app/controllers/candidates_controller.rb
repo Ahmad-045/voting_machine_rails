@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CandidatesController < ApplicationController
-  before_action :authorization_check, except: :votes
+  before_action :authorization_check
 
   def new
     @candidate = Candidate.new
@@ -32,10 +32,6 @@ class CandidatesController < ApplicationController
     end
   end
 
-  def votes
-    @candidates = Candidate.all
-  end
-
   private
 
   def candiate_params
@@ -45,20 +41,24 @@ class CandidatesController < ApplicationController
   def toggle_user_role(user_id, candidate_status)
     user = User.find_by(id: user_id)
     if user.voter?
-      candidate_status.approved = true
-      candidate_status.save
       user.candidate!
+      candidate_status.approved = true
 
     elsif user.candidate?
       user.voter!
       candidate_status.approved = false
-      candidate_status.save
     end
+    check_fail_save(candidate_status)
+  end
+
+  def check_fail_save(record)
+    return true if record.save
+
+    redirect_to root_path, alert: 'Error Saving the Record in the Database...'
   end
 
   def authorization_check
-    return unless params[:user_id] != current_user.id.to_s
-    return if current_user.admin?
+    return if params[:user_id] == current_user.id.to_s || current_user.admin?
 
     redirect_to root_path, alert: 'Not Authorized For this action'
   end
