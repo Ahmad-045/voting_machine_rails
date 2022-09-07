@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resource :candidate, only: %i[new create update]
-    get 'halka_voters', on: :collection  # Route that show the all the voters in a specific halka
+    get 'halka_voters', on: :collection # Route that show the all the voters in a specific halka
     get 'show_voters', on: :member   # Route to show the voters that casted their vote in the favor of any candidate (:id)
   end
 

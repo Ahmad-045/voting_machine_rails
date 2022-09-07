@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
   def halka_voters
     @users = User.where(halka_id: current_user.halka_id).page(params[:page]).per(10)
+    authorize @users
   end
 
   def show_voters

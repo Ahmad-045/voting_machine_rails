@@ -30,5 +30,4 @@ module ApplicationHelper
   def candidate_details(user_id)
     Candidate.user_details(user_id)[0]
   end
-
 end
