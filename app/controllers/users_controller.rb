@@ -19,13 +19,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if User.exists?(params[:id])
-      User.destroy(params[:id])
-      flash[:notice] = 'Successfully delete the User from the Database'
-      redirect_to(request.referer || root_path)
-    else
-      redirect_to halka_path, alert: 'Error Deleting the User from the Database'
-    end
+    redirect_to halka_path, alert: 'Error Deleting the User from the Database' unless User.exists?(params[:id])
+
+    @user = User.find_by(id: params[:id])
+    authorize @user
+    @user.destroy ? (redirect_to request.referer || root_path, alert: 'Successfully deleted the User') : return
   end
 
   def halka_voters
@@ -42,7 +40,7 @@ class UsersController < ApplicationController
   private
 
   def does_user_exist?
-    Candidate.find_by(user_id: params[:id])
+    Candidate.find_by(user_id: params[:id]) && User.find_by(id: params[:id])
   end
 
   def filter_resources(filter)
