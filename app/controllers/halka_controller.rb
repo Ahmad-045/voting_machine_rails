@@ -3,14 +3,17 @@
 class HalkaController < ApplicationController
   def index
     @halkas = Halka.page(params[:page]).per(10)
+    authorize @halkas
   end
 
   def new
     @halka = Halka.new
+    authorize @halka
   end
 
   def create
     @halka = Halka.new(halka_params)
+    authorize @halka
     if @halka.save
       redirect_to halka_index_path, notice: 'Succesfully added new Halka'
     else

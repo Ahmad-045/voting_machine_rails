@@ -5,6 +5,7 @@
   <% @candidate_information.each do |candidate|%>
 
     <div class="candidate_card col-4">
+      <p><strong>Name: </strong><%= candidate_details(candidate.user_id).name %> </p>
       <p><strong>Party Name: </strong><%= candidate.party_name%> </p>
       <p><strong>Halka: </strong><%= extract_halka_name(candidate.halka_id)%></p>
       <p><strong>Total Votes: </strong><%= candidate.votes.count %></p>

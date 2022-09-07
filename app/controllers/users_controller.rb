@@ -34,6 +34,8 @@ class UsersController < ApplicationController
 
   def show_voters
     @votes = Candidate.find_by(id: params[:id])&.votes
+
+    authorize current_user
   end
 
   private

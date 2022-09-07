@@ -14,14 +14,6 @@ module ApplicationHelper
     end
   end
 
-  # def select_options_using_filter(filter)
-  #   if filter.nil? || filter == 'Candidate'
-  #     options_for_select(%w[Candidate Voters], 'Candidate')
-  #   else
-  #     options_for_select(%w[Candidate Voters], 'Voter')
-  #   end
-  # end
-
   def extract_party_name(user_id)
     Candidate.find_by(user_id: user_id).party_name
   end
@@ -34,4 +26,9 @@ module ApplicationHelper
   def election_opened?
     Election.last.end_time >= Time.zone.now.localtime.strftime('%a, %d %b %Y %H:%M:%S')
   end
+
+  def candidate_details(user_id)
+    Candidate.user_details(user_id)[0]
+  end
+
 end

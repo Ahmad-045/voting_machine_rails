@@ -14,7 +14,7 @@ class VoteController < ApplicationController
       redirect_to root_path, notice: 'Successfully casted your vote'
     else
       redirect_to root_path,
-                  alert: 'CANNOT VOTE, Either you have already casted your vote or Election is not Started Yet'
+                  alert: 'CANNOT VOTE, Either you have already casted your vote or Contact Admin'
     end
   end
 
@@ -25,7 +25,7 @@ class VoteController < ApplicationController
   end
 
   def candidate_aprroved?
-    return flash[:alert] = 'Not Authorized/Approved Yet' unless Candidate.exists?(user_id: params[:id])
+    return false unless Candidate.exists?(user_id: params[:id])
 
     Candidate.find_by(user_id: params[:id]).approved && !current_user.given_vote
   end
