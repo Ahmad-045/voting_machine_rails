@@ -33,7 +33,7 @@
       <%= link_to "Start Election", new_election_path, class: "btn btn-secondary"%>
     <% end %>
 
-    <%= link_to "Votes", vote_index_path , class: "btn btn-info text-white d-none", id: 'votes_final' %>
+    <%= link_to "Votes", vote_index_path , class: "btn btn-info text-white", id: 'votes_final' if !election_opened? && !current_user.admin? %>
 
 
   </div>

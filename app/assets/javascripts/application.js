@@ -21,16 +21,19 @@
 
 jQuery(function($){
   // require turbolinks
+
+  // var date = new Date();
+  // date.setDate(data.getDate()-1)
+  // var tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
+
+  var today = moment().format('YYYY-MM-DD')
   $("#cnic").mask("99999-9999999-9");
   $('#datetimepicker5').datetimepicker({
     format: 'YYYY-MM-DD HH:mm:ss',
+    minDate: today,
+
   });
 })
-
-
-function changeSelectedValue(filter){
-  console.log(filter)
-}
 
 function getTimeRemaining(endtime) {
   const endtimeDate = endtime
@@ -80,6 +83,7 @@ function getTimeRemaining(endtime) {
         clearInterval(timeinterval);
         alert("Voting Time is Over")
         document.getElementById('votes_final').classList.remove('d-none')
+        window.location.reload(true);
       }
     }
 

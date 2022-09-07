@@ -22,12 +22,11 @@ class HalkaController < ApplicationController
   end
 
   def destroy
-    if Halka.exists?(params[:id])
+    if Halka.exists?(params[:id]) && check_admin_halka(params[:id])
       Halka.destroy(params[:id])
-      flash[:notice] = 'Successfully delete the Halka from the Database'
-      redirect_to(request.referer || root_path)
+      redirect_to halka_index_path, notice: 'Successfully delete the Halka from the Database'
     else
-      redirect_to halka_path, alert: 'Error Deleting the Halka from the Database'
+      redirect_to halka_index_path, alert: 'Error Deleting the Halka from the Database'
     end
   end
 
@@ -35,5 +34,9 @@ class HalkaController < ApplicationController
 
   def halka_params
     params.require(:halka).permit(:name)
+  end
+
+  def check_admin_halka(halka_id)
+    current_user.halka_id != halka_id.to_i
   end
 end

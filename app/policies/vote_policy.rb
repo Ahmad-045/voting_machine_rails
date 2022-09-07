@@ -8,6 +8,14 @@ class VotePolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    @user.admin? || election_closed?
+  end
+
+  def election_closed?
+    Election.last.end_time.to_datetime <= Time.zone.now.localtime.strftime('%a, %d %b %Y %H:%M:%S')
+  end
+
   def add?
     candidate_halka == user_halka
   end

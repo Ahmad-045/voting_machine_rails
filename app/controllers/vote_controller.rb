@@ -3,6 +3,7 @@
 class VoteController < ApplicationController
   def index
     @vote = Vote.all
+    authorize @vote
     @candidate_information = Candidate.includes(:votes)
   end
 

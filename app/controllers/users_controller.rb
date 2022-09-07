@@ -3,27 +3,33 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-    @users = filter_resources(params[:filter])
-
-    @filter = params[:filter]
     authorize @users
+
+    @users = filter_resources(params[:filter])
+    @filter = params[:filter]
   end
 
   def show
-    if does_user_exist?
-      @candidate = Candidate.find_by(user_id: params[:id])
-      @user = Candidate.user_details(@candidate.user_id)[0]
+    @candidate = Candidate.find_by(user_id: params[:id])
+
+    if @candidate
+      @user = Candidate.user_details(@candidate.user_id).take
     else
       redirect_to users_path, alert: 'Resource Not Found'
     end
   end
 
   def destroy
-    redirect_to halka_path, alert: 'Error Deleting the User from the Database' unless User.exists?(params[:id])
-
     @user = User.find_by(id: params[:id])
     authorize @user
-    @user.destroy ? (redirect_to request.referer || root_path, alert: 'Successfully deleted the User') : return
+
+    if @user
+      check_in_candidate_table(@user.id)
+      User.destroy(params[:id])
+      redirect_to request.referer || root_path, notice: 'Successfully delete the User from the Database'
+    else
+      redirect_to halka_path, alert: 'Error Deleting the User from the Database'
+    end
   end
 
   def halka_voters
@@ -40,7 +46,7 @@ class UsersController < ApplicationController
   private
 
   def does_user_exist?
-    Candidate.find_by(user_id: params[:id]) && User.find_by(id: params[:id])
+    Candidate.find_by(user_id: params[:id])
   end
 
   def filter_resources(filter)
@@ -50,5 +56,10 @@ class UsersController < ApplicationController
     else
       Candidate.user_details(Candidate.pluck(:user_id))
     end
+  end
+
+  def check_in_candidate_table(user_id)
+    @candidate = Candidate.find_by(user_id: user_id)
+    @candidate&.destroy
   end
 end
