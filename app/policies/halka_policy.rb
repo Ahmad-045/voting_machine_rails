@@ -8,7 +8,7 @@ class HalkaPolicy < ApplicationPolicy
     end
   end
 
-  %i[new? index? create?].each do |name|
+  %i[new? index? create? destroy?].each do |name|
     define_method name do
       @user.admin?
     end

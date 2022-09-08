@@ -8,12 +8,6 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  # %i[index? show_voters? destroy?].each do |name|
-  #   define_method name do
-  #     @user.admin?
-  #   end
-  # end
-
   def index?
     @user.admin?
   end

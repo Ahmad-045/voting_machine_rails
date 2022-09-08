@@ -2,18 +2,18 @@
 
 class HalkaController < ApplicationController
   def index
+    authorize Halka
     @halkas = Halka.page(params[:page]).per(10)
-    authorize @halkas
   end
 
   def new
+    authorize Halka
     @halka = Halka.new
-    authorize @halka
   end
 
   def create
+    authorize Halka
     @halka = Halka.new(halka_params)
-    authorize @halka
     if @halka.save
       redirect_to halka_index_path, notice: 'Succesfully added new Halka'
     else
@@ -22,8 +22,11 @@ class HalkaController < ApplicationController
   end
 
   def destroy
-    if Halka.exists?(params[:id]) && check_admin_halka(params[:id])
-      Halka.destroy(params[:id])
+    authorize Halka
+    @halka = Halka.find_by(id: params[:id])
+
+    if @halka && check_admin_halka(params[:id])
+      @halka.destroy!
       redirect_to halka_index_path, notice: 'Successfully delete the Halka from the Database'
     else
       redirect_to halka_index_path, alert: 'Error Deleting the Halka from the Database'

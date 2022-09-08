@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 class CandidatesController < ApplicationController
-  before_action :authorization_check
-
   def new
+    authorize Candidate
     @candidate = Candidate.new
-    authorize @candidate
   end
 
   def create
+    authorize Candidate
     @candidate = Candidate.new(candiate_params)
-    authorize @candidate
 
     @candidate.user_id = current_user.id
     @candidate.halka_id = current_user.halka_id
@@ -23,6 +21,7 @@ class CandidatesController < ApplicationController
   end
 
   def update
+    authorize Candidate
     candidate_status = Candidate.find_by(user_id: params[:user_id])
 
     if toggle_user_role(params[:user_id], candidate_status)
@@ -55,11 +54,5 @@ class CandidatesController < ApplicationController
     return true if record.save
 
     redirect_to root_path, alert: 'Error Saving the Record in the Database...'
-  end
-
-  def authorization_check
-    return if params[:user_id] == current_user.id.to_s || current_user.admin?
-
-    redirect_to root_path, alert: 'Not Authorized For this action'
   end
 end

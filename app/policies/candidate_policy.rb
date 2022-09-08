@@ -9,7 +9,11 @@ class CandidatePolicy < ApplicationPolicy
   end
 
   def new?
-    @user.voter? && check_in_candidate_table?
+    (@user.voter? && check_in_candidate_table?)
+  end
+
+  def update?
+    @user.admin?
   end
 
   def check_in_candidate_table?
@@ -19,4 +23,8 @@ class CandidatePolicy < ApplicationPolicy
   def create?
     @user.voter?
   end
+
+  # def authorization_check
+  #   return if params[:user_id] == current_user.id.to_s || current_user.admin?
+  # end
 end
