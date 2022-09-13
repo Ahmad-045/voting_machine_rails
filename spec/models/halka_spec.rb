@@ -13,17 +13,17 @@ RSpec.describe Halka, type: :model do
 
   describe '# validations' do
     it 'is valid if name is present' do
-      expect(halka).to be_valid
+      expect(test_halka).to be_valid
     end
 
     it 'is not valid if name is nil' do
       test_halka.name = nil
-      expect(halka).not_to be_valid
+      expect(test_halka).not_to be_valid
     end
 
     it 'is not valid if name is empty string' do
       test_halka.name = ''
-      expect(halka).not_to be_valid
+      expect(test_halka).not_to be_valid
     end
   end
 end

@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :election do
-    start_time { '2022-09-13 15:00:00' }
+    start_time { '2022-09-13 15:00:00'.to_datetime }
   end
 end

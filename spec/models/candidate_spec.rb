@@ -17,12 +17,12 @@ RSpec.describe Candidate, type: :model do
 
   describe '#party symbol' do
     it 'is valid if party symbol attached' do
-      expect(candidate.party_symbol).to be_attached
+      expect(test_candidate.party_symbol).to be_attached
     end
 
     it 'is not valid if party symbol not attached' do
       test_candidate.party_symbol.purge
-      expect(candidate.party_symbol).not_to be_attached
+      expect(test_candidate.party_symbol).not_to be_attached
     end
   end
 end
