@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   # validates :name, :cnic, presence: true
   validates :name, :cnic, presence: true
-  validate  :correct_image_type
+  validate :correct_image_type
 
   belongs_to :halka
   has_one :vote, dependent: :destroy

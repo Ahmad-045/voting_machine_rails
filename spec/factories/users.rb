@@ -7,5 +7,13 @@ FactoryBot.define do
     cnic { '33100-4979893-7' }
     password { 'asdasd' }
     halka
+
+    after(:build) do |user|
+      user.avatar.attach(
+        io: File.open(Rails.root.join('/home/dev/Desktop/finalProject/voting_machine/app/assets/images/images.jpeg')),
+        filename: 'images.jpeg',
+        content_type: 'image/jpeg'
+      )
+    end
   end
 end
