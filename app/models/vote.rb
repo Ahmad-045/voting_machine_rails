@@ -12,12 +12,9 @@ class Vote < ApplicationRecord
 
   def update_user_status
     user_id = self.user_id
-    if User.exists?(user_id)
-      user = User.find(user_id)
-      user.given_vote = true
-      flash[:alert] = 'Error, Updating the User status' unless user.save
-    else
-      flash[:alert] = 'Resource Not Found'
-    end
+    return unless User.exists?(user_id)
+
+    user = User.find(user_id)
+    user.given_vote = true
   end
 end

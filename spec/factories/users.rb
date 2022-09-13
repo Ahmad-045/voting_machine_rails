@@ -7,6 +7,7 @@ FactoryBot.define do
     cnic { '33100-4979893-7' }
     password { 'asdasd' }
     halka
+    given_vote { false }
 
     after(:build) do |user|
       user.avatar.attach(
