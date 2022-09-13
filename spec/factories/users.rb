@@ -10,9 +10,9 @@ FactoryBot.define do
 
     after(:build) do |user|
       user.avatar.attach(
-        io: File.open(Rails.root.join('/home/dev/Desktop/finalProject/voting_machine/app/assets/images/images.jpeg')),
-        filename: 'images.jpeg',
-        content_type: 'image/jpeg'
+        io: File.open(Rails.root.join('/home/dev/Desktop/finalProject/voting_machine/app/assets/images/ahmad.jpg')),
+        filename: 'ahmad.jpg',
+        content_type: 'image/jpg'
       )
     end
   end

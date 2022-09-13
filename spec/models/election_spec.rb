@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe Election, type: :model do
   describe '#validations' do
+    it { is_expected.to validate_presence_of(:end_time) }
+
     it 'is not valid if end time is lower than start time' do
       election = build(:election, end_time: '2022-09-13 12:00:00')
       expect(election).not_to be_valid
@@ -18,6 +20,5 @@ RSpec.describe Election, type: :model do
       election = build(:election, end_time: '2022-09-13 15:00:00')
       expect(election).not_to be_valid
     end
-
   end
 end
