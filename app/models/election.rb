@@ -10,6 +10,8 @@ class Election < ApplicationRecord
   def compare_start_end_time
     return false unless end_time.to_datetime
 
-    errors.add(:end_time, 'Its in PAST') if end_time.to_datetime <= Time.zone.now.localtime.strftime('%a, %d %b %Y %H:%M:%S')
+    if end_time.to_datetime <= Time.zone.now.localtime.strftime('%a, %d %b %Y %H:%M:%S')
+      errors.add(:end_time, 'Its in PAST')
+    end
   end
 end
