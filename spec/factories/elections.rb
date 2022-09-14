@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :election do
-    start_time { '2022-09-13 15:00:00'.to_datetime }
+    start_time { Time.zone.now.localtime.strftime('%a, %d %b %Y %H:%M:%S') }
+    end_time { '2022-09-17 19:54:04' }
   end
 end

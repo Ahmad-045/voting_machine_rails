@@ -13,7 +13,7 @@ FactoryBot.define do
       user.avatar.attach(
         io: File.open(Rails.root.join('/home/dev/Desktop/finalProject/voting_machine/app/assets/images/ahmad.jpg')),
         filename: 'ahmad.jpg',
-        content_type: 'image/jpg'
+        content_type: 'image/jpeg'
       )
     end
   end

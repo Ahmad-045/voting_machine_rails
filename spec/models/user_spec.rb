@@ -34,4 +34,19 @@ RSpec.describe User, type: :model do
       expect(test_user.avatar).not_to be_attached
     end
   end
+
+  describe '# correct Avatar type' do
+    correct_image_types = ['image/jpeg', 'image/png']
+    it 'is correct image type' do
+      expect(correct_image_types).to include(test_user.avatar.content_type)
+    end
+
+    it 'is not correct image type' do
+      test_user.avatar.attach(
+        io: File.open(Rails.root.join('/home/dev/Desktop/finalProject/voting_machine/app/assets/images/sample1.heic')),
+        filename: 'sample1.heic', content_type: 'image/heic'
+      )
+      expect(correct_image_types).not_to include(test_user.avatar.content_type)
+    end
+  end
 end

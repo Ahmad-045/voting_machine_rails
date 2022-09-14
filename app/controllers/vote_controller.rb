@@ -14,7 +14,7 @@ class VoteController < ApplicationController
 
       authorize @vote
 
-      @vote.save
+      @vote.save!
       redirect_to root_path, notice: 'Successfully casted your vote'
     else
       redirect_to root_path,

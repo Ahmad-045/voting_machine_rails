@@ -45,10 +45,6 @@ class UsersController < ApplicationController
 
   private
 
-  def does_user_exist?
-    Candidate.find_by(user_id: params[:id])
-  end
-
   def filter_resources(filter)
     case filter
     when 'Voters'

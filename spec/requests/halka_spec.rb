@@ -15,7 +15,7 @@ RSpec.describe 'HalkaController', type: :request do
     it 'check flash error if user role is not admin' do
       sign_in not_admin
       get halka_index_path
-      expect(flash.alert).to include 'You are not authorized to perform this action.'
+      expect(flash.alert).to eq('You are not authorized to perform this action.')
     end
   end
 
@@ -31,7 +31,7 @@ RSpec.describe 'HalkaController', type: :request do
       sign_in not_admin
       get new_halka_path
       post halka_index_path, params: { halka: { name: 'NA-321' } }
-      expect(flash.alert).to include 'You are not authorized to perform this action.'
+      expect(flash.alert).to eq('You are not authorized to perform this action.')
     end
   end
 
@@ -45,7 +45,7 @@ RSpec.describe 'HalkaController', type: :request do
     it 'cannot delete halka if user is not admin' do
       sign_in not_admin
       delete halka_path(test_halka.id)
-      expect(flash.alert).to include 'You are not authorized to perform this action.'
+      expect(flash.alert).to eq('You are not authorized to perform this action.')
     end
   end
 end

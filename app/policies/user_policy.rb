@@ -15,7 +15,6 @@ class UserPolicy < ApplicationPolicy
   alias destroy? index?
   alias show_voters? index?
 
-  # alias_method :show_voter?
   def halka_voters?
     @user.candidate?
   end

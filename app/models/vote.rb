@@ -2,6 +2,7 @@
 
 class Vote < ApplicationRecord
   # validates :user_id, :candidate_id, presence: true
+  validates :user_id, uniqueness: true
 
   before_save :update_user_status
 
@@ -16,5 +17,6 @@ class Vote < ApplicationRecord
 
     user = User.find(user_id)
     user.given_vote = true
+    user.save
   end
 end

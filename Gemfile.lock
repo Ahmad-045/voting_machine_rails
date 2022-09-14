@@ -91,6 +91,7 @@ GEM
       warden (~> 1.2.3)
     devise-bootstrap-views (1.1.0)
     diff-lcs (1.5.0)
+    docile (1.4.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.11.0)
@@ -299,6 +300,12 @@ GEM
       faraday (>= 0.17.3, < 3)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
+    simplecov (0.21.2)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     slack-notifier (2.4.0)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
@@ -381,6 +388,7 @@ DEPENDENCIES
   rubocop-rspec
   sass-rails (~> 5.0)
   shoulda-matchers (~> 5.0)
+  simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
