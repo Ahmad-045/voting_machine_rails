@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'UsersController', type: :request do
@@ -44,11 +46,10 @@ RSpec.describe 'UsersController', type: :request do
   describe 'GET /users/:id/show_voters' do
     let(:test_user_candidate) { create(:user, role: 1) } # Create the user with the role of candidate
     let(:test_candidate) { create(:candidate, user_id: test_user_candidate.id, approved: true) } # Assigning the candidate profile to the user
-    # let(:test_user) { create(:user) } # Simple user to cast the vote
 
     it 'logged-in user is admin' do
-      sign_in admin # Sign in to the application as ADMIN
-      get show_voters_user_path(test_candidate.id) # Show voters details
+      sign_in admin
+      get show_voters_user_path(test_candidate.id)
       expect(response).to have_http_status(:ok)
     end
 
@@ -73,6 +74,28 @@ RSpec.describe 'UsersController', type: :request do
       sign_in create(:user)
       get halka_voters_users_path
       expect(response).to redirect_to(root_url)
+    end
+  end
+
+  describe 'User not Sign in' do
+    it 'cannot VIEW list of Users' do
+      get users_path
+      expect(response).to redirect_to(new_user_session_url)
+    end
+
+    it 'cannot DELETE user' do
+      delete user_path(122)
+      expect(response).to redirect_to(new_user_session_url)
+    end
+
+    it 'cannot show_voters list' do
+      get show_voters_user_path(122)
+      expect(response).to redirect_to(new_user_session_url)
+    end
+
+    it 'cannot see HALKA-VOTERS' do
+      get halka_voters_users_path
+      expect(response).to redirect_to(new_user_session_url)
     end
   end
 end

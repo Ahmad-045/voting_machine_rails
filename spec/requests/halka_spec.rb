@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'HalkaController', type: :request do
@@ -49,17 +51,22 @@ RSpec.describe 'HalkaController', type: :request do
     end
   end
 
-
   describe 'User not Sign in' do
     let(:test_user) { create(:user) }
 
-    it 'cannot view halka list if not sign in' do
+    it 'cannot VIEW halka list' do
       get halka_index_path
       expect(flash.keys).to eq(['alert'])
     end
+
+    it 'cannot CREATE new halka' do
+      get new_halka_path
+      expect(flash.keys).to eq(['alert'])
+    end
+
+    it 'cannot DELETE new halka' do
+      delete halka_path(test_halka.id)
+      expect(flash.keys).to eq(['alert'])
+    end
   end
-
-
-
-
 end
