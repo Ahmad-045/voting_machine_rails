@@ -9,6 +9,7 @@ class VoteController < ApplicationController
 
   def add
     if election_opened? && candidate_aprroved?
+
       candidate = Candidate.find_by(user_id: params[:id])
       @vote = Vote.new(user_id: current_user.id, candidate_id: candidate.id)
 

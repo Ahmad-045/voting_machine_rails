@@ -20,8 +20,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    authorize User
     @user = User.find_by(id: params[:id])
-    authorize @user
 
     if @user
       check_in_candidate_table(@user.id)

@@ -35,10 +35,10 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '# correct Avatar type' do
-    correct_image_types = ['image/jpeg', 'image/png']
+  describe '# correct Avatar type [image/png] [image/jpeg]' do
     it 'is correct image type' do
-      expect(correct_image_types).to include(test_user.avatar.content_type)
+      expect(test_user).to be_valid
+      # expect(correct_image_types).to include(test_user.avatar.content_type)
     end
 
     it 'is not correct image type' do
@@ -46,7 +46,8 @@ RSpec.describe User, type: :model do
         io: File.open(Rails.root.join('/home/dev/Desktop/finalProject/voting_machine/app/assets/images/sample1.heic')),
         filename: 'sample1.heic', content_type: 'image/heic'
       )
-      expect(correct_image_types).not_to include(test_user.avatar.content_type)
+      expect(test_user).not_to be_valid
+      # expect(correct_image_types).not_to include(test_user.avatar.content_type)
     end
   end
 end
