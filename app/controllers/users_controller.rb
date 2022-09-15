@@ -20,8 +20,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    authorize User
     @user = User.find_by(id: params[:id])
-    authorize @user
 
     if @user
       check_in_candidate_table(@user.id)
@@ -44,10 +44,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def does_user_exist?
-    Candidate.find_by(user_id: params[:id])
-  end
 
   def filter_resources(filter)
     case filter

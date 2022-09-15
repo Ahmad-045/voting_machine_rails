@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-
   before_create :set_default_role
 
   # Include default devise modules. Others available are:
@@ -9,8 +8,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :validatable
 
-  validates :name, :avatar, :halka_id, :cnic, presence: true
-  validate  :correct_image_type
+  # validates :name, :cnic, presence: true
+  validates :name, :cnic, presence: true
+  validate :correct_image_type
 
   belongs_to :halka
   has_one :vote, dependent: :destroy
@@ -32,5 +32,4 @@ class User < ApplicationRecord
       errors.add(:avatar, 'required')
     end
   end
-
 end
